@@ -1,8 +1,6 @@
 # GPT-4 Chatbot with Customized Knowledge Base :rocket: :rocket: :rocket:
 
-This repository contains the code for an interactive GPT-4 chatbot that integrates a customized knowledge base. The project includes functionalities for summarizing audio and video content, extracting text from websites and PDFs, embedding knowledge into vector databases (like Pinecone), and generating responses based on the embedded information. 
-
-The system is built to handle multiple input formats, providing a flexible and intelligent chatbot experience.
+This is an interactive GPT-4 chatbot that integrates a customized knowledge base. It includes functionalities for summarizing audio and video content, extracting text from websites and PDFs, embedding knowledge into vector databases (like Pinecone), and generating responses based on the embedded information. 
 
 ## Features :star:
 
