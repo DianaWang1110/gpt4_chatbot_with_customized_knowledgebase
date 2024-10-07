@@ -1,0 +1,1 @@
+from audio_video_summary.generate import generate_takeaways
