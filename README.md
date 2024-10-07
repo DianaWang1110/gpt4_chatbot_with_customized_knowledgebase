@@ -1,108 +1,105 @@
-GPT-4 Chatbot with Customized Knowledge Base
+# GPT-4 Chatbot with Customized Knowledge Base :rocket: :rocket: :rocket:
 
-This repository contains the code for an interactive GPT-4 chatbot that integrates a customized knowledge base. The project includes functionalities for summarizing audio and video content, extracting text from websites and PDFs, embedding knowledge into vector databases (like Pinecone), and generating responses based on the embedded information.
+This repository contains the code for an interactive GPT-4 chatbot that integrates a customized knowledge base. The project includes functionalities for summarizing audio and video content, extracting text from websites and PDFs, embedding knowledge into vector databases (like Pinecone), and generating responses based on the embedded information. 
 
 The system is built to handle multiple input formats, providing a flexible and intelligent chatbot experience.
 
-Features
+## Features :star:
 
-Audio and Video Summary Module (audio_video_summary/)
+### Audio and Video Summary Module (`audio_video_summary/`)
+
 This module provides functionalities for processing audio and video files, generating transcriptions, and creating summarized takeaways.
 
-Key Components:
+#### Key Components:
+1. **Conversion (`conversion.py`)**: 
+   - Converts video to audio (`video_to_audio()`) and formats audio files as needed (e.g., `mp3_to_wav()`).
 
-Conversion (conversion.py):
-Converts video to audio (video_to_audio()) and formats audio files as needed (e.g., mp3_to_wav()).
-Summary Generation (generate.py):
-Uses OpenAI GPT to generate bulleted key takeaways from transcribed text. Supports multiple summarization methods like map_reduce and refine.
-Ingestion (ingest.py):
-Downloads video/audio from sources such as webinars (future support for platforms like Zoom).
-Transcription (transcribe.py):
-Transcribes audio using models like Whisper and Google Speech-to-Text. Can convert MP3s to text and generate transcripts for the chatbot.
-Website and PDF Interaction Module (website_vectordb_query/)
+2. **Summary Generation (`generate.py`)**: 
+   - Uses OpenAI GPT to generate bulleted key takeaways from transcribed text. Supports multiple summarization methods like `map_reduce` and `refine`.
+
+3. **Ingestion (`ingest.py`)**: 
+   - Downloads video/audio from sources such as webinars (future support for platforms like Zoom).
+
+4. **Transcription (`transcribe.py`)**: 
+   - Transcribes audio using models like Whisper and Google Speech-to-Text. Can convert MP3s to text and generate transcripts for the chatbot.
+
+---
+
+### Website and PDF Interaction Module (`website_vectordb_query/`)
+
 This module is designed to interact with websites, PDFs, and other text sources, extracting information and storing embeddings into a vector database for later use by the chatbot.
 
-Key Components:
+#### Key Components:
+1. **Web Crawler (`crawler.py`)**: 
+   - Automates the process of scraping text from websites using Selenium and undetected-chromedriver.
 
-Web Crawler (crawler.py):
-Automates the process of scraping text from websites using Selenium and undetected-chromedriver.
-PDF Processing (gpt_helpers.py & main_functions.py):
-Extracts text from PDF files and processes it for embedding using GPT models and Pinecone.
-Tokenization and Embedding (tokenize_embedding_helpers.py):
-Tokenizes extracted text and generates embeddings using GPT, storing them in Pinecone for fast retrieval.
-Pinecone Vector Database Interaction (pinecone_storage.py & update_pinecone.py):
-Stores and updates the embeddings in Pinecone for efficient knowledge retrieval by the chatbot.
-S3 Upload (upload_s3.py):
-Facilitates the upload of large documents or media to Amazon S3 for distributed access and storage.
-Installation
+2. **PDF Processing (`gpt_helpers.py` & `main_functions.py`)**: 
+   - Extracts text from PDF files and processes it for embedding using GPT models and Pinecone.
 
-Clone the Repository:
-bash
-Copy code
-git clone https://github.com/DianaWang1110/gpt4_chatbot_with_customized_knowledgebase.git
-cd gpt4_chatbot_with_customized_knowledgebase
-Install Dependencies: Install the required Python packages by running:
-bash
-Copy code
-pip install -r requirements.txt
-Required dependencies:
+3. **Tokenization and Embedding (`tokenize_embedding_helpers.py`)**: 
+   - Tokenizes extracted text and generates embeddings using GPT, storing them in Pinecone for fast retrieval.
 
-plaintext
-Copy code
-numpy==1.25.0
-openai==0.27.8
-pandas==2.0.2
-selenium==4.9.1
-pinecone-client~=2.2.1
-undetected-chromedriver==3.5.0
-Additional tools (optional):
+4. **Pinecone Vector Database Interaction (`pinecone_storage.py` & `update_pinecone.py`)**: 
+   - Stores and updates the embeddings in Pinecone for efficient knowledge retrieval by the chatbot.
 
-Tiktoken: For tokenization support
-Langchain: For advanced language model integrations
-Set Environment Variables: You will need to set the API keys for both OpenAI and Pinecone.
-bash
-Copy code
-export OPENAI_API_KEY="your_openai_api_key"
-export PINECONE_API_KEY="your_pinecone_api_key"
-Usage
+5. **S3 Upload (`upload_s3.py`)**: 
+   - Facilitates the upload of large documents or media to Amazon S3 for distributed access and storage.
 
-Audio and Video Summarization
-Use the audio_video_summary module to convert, transcribe, and summarize audio/video files:
+---
 
-Example:
+## Installation :star: 
 
-python
-Copy code
-from audio_video_summary.generate import generate_takeaways
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/DianaWang1110/gpt4_chatbot_with_customized_knowledgebase.git
+   cd gpt4_chatbot_with_customized_knowledgebase
+2. **Install Dependencies:** Install the required Python packages by running:
+   ```bash
+   pip install -r requirements.txt
+   
+  Required dependencies:
+  numpy==1.25.0
+  openai==0.27.8
+  pandas==2.0.2
+  selenium==4.9.1
+  pinecone-client~=2.2.1
+  undetected-chromedriver==3.5.0
 
-text = "Transcription text here"
-takeaways = generate_takeaways(text, combine_method="map_reduce")
-print(takeaways)
-Website and PDF Embedding
-Use the website_vectordb_query module to crawl websites or extract text from PDFs and embed the information into Pinecone:
+3. **Set Environment Variables**: Set the API keys for both OpenAI and Pinecone.
+   ```bash
+   export OPENAI_API_KEY="your_openai_api_key"
+   export PINECONE_API_KEY="your_pinecone_api_key"
 
-Example:
+ ---
 
-python
-Copy code
-from website_vectordb_query.gpt_helpers import embed_pdf
+  ## Usage :star: 
+  ### Audio and Video Summarization
+  Use the (`audio_video_summary`) module to convert, transcribe, and summarize audio/video files:
 
-pdf_path = "/path/to/your/pdf"
-embed_pdf(pdf_path, pinecone_index="your_index_name")
-Chatbot Query
-Once the data is embedded, you can query the chatbot to get answers based on the embedded knowledge:
+    
+      from audio_video_summary.generate import generate_takeaways
+      
+      text = "Transcription text here"
+      takeaways = generate_takeaways(text, combine_method="map_reduce")
+      print(takeaways)
 
-Example:
+  ### Website and PDF Embedding
+  Use the (`website_vectordb_query`) module to crawl websites or extract text from PDFs and embed the information into Pinecone:
+   
+   
+    from website_vectordb_query.gpt_helpers import embed_pdf
+    pdf_path = "/path/to/your/pdf"
+    embed_pdf(pdf_path, pinecone_index="your_index_name")
 
-python
-Copy code
-from website_vectordb_query.main_functions import query_knowledgebase
 
-response = query_knowledgebase("What are the key takeaways from the document?")
-print(response)
-Future Enhancements
+  ### Chatbot Query
+  Once the data is embedded, you can query the chatbot to get answers based on the embedded knowledge:
 
-Full implementation of additional media formats and summarization techniques.
-Advanced conversational capabilities for handling complex queries over embedded knowledge.
-Support for more data sources like YouTube, Zoom, and others.
-Enhanced error handling and performance optimization.
+  ```bash
+  from website_vectordb_query.main_functions import query_knowledgebase
+
+  response = query_knowledgebase("What are the key takeaways from the document?")
+  print(response)
+
+
+  
