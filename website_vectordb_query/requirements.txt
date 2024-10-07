@@ -1,0 +1,15 @@
+numpy==1.25.0
+openai==0.27.8
+pandas==2.0.2
+selenium==4.9.1
+setuptools~=65.6.3
+tiktoken==0.4.0
+tqdm==4.65.0
+#langchain==0.0.218
+#pikepdf~=7.2.0
+pinecone-client~=2.2.1
+undetected-chromedriver==3.5.0
+#matplotlib ~= 3.7.1
+#plotly ~= 5.14.1
+#scipy ~= 1.10.1
+#scikit-learn ~= 1.2.2
